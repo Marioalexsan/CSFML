@@ -22,54 +22,43 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TOUCH_H
-#define SFML_TOUCH_H
+#ifndef SFML_ALLOC_H
+#define SFML_ALLOC_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Export.h>
-#include <SFML/Window/Types.h>
-#include <SFML/System/Vector2.h>
+#include <SFML/System/Export.h>
+
+#include <stddef.h>
+
+////////////////////////////////////////////////////////////
+/// \brief Allocates memory
+///
+/// This function allocates memory of the given size in bytes
+/// using the malloc function from the C standard library.
+/// 
+/// \param size Number of bytes to allocate
+///
+/// \return A pointer to the allocated memory if successful, NULL otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_SYSTEM_API void* sfMalloc(size_t size);
 
 
 ////////////////////////////////////////////////////////////
-/// \brief Check if a touch event is currently down
+/// \brief Deallocates memory
 ///
-/// \param finger Finger index
-///
-/// \return sfTrue if \a finger is currently touching the screen, sfFalse otherwise
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfTouch_isDown(unsigned int finger);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the current position of a touch in window coordinates
-///
-/// This function returns the current touch position
-/// relative to the given window, or desktop if NULL is passed.
-///
-/// \param finger Finger index
-/// \param relativeTo Reference window
-///
-/// \return Current position of \a finger, or undefined if it's not down
+/// This function deallocates the memory being pointed to
+/// using the free function from the C standard library.
+/// 
+/// The memory must have been previously allocated using a call
+/// to malloc.
+/// 
+/// \param ptr Pointer to the memory to deallocate 
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the current position of a touch in window coordinates
-///
-/// This function returns the current touch position
-/// relative to the given window base, or desktop if NULL is passed.
-///
-/// \param finger Finger index
-/// \param relativeTo Reference window
-///
-/// \return Current position of \a finger, or undefined if it's not down
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo);
+CSFML_SYSTEM_API void sfFree(void* ptr);
 
 
-#endif // SFML_TOUCH_H
+#endif // SFML_ALLOC_H

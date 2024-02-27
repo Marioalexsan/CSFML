@@ -25,43 +25,20 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Touch.h>
-#include <SFML/Window/Touch.hpp>
-#include <SFML/Window/WindowBaseStruct.h>
-#include <SFML/Window/WindowStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/Alloc.h>
+
+#include <stdlib.h>
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTouch_isDown(unsigned int finger)
+void* sfMalloc(size_t size)
 {
-    return sf::Touch::isDown(finger);
+    return malloc(size);
 }
 
-////////////////////////////////////////////////////////////
-sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
-{
-    sf::Vector2i sfmlPosition;
-
-    if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
-
-    sfVector2i position = {sfmlPosition.x, sfmlPosition.y};
-    return position;
-}
 
 ////////////////////////////////////////////////////////////
-sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo)
+void sfFree(void* ptr)
 {
-    sf::Vector2i sfmlPosition;
-
-    if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
-
-    sfVector2i position = { sfmlPosition.x, sfmlPosition.y };
-    return position;
+    free(ptr);
 }

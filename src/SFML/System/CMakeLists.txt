@@ -31,4 +31,4 @@ set(SRC
 # define the csfml-system target
 csfml_add_library(csfml-system
                   SOURCES ${SRC}
-                  DEPENDS sfml-system)
+                  DEPENDS SFML::System)

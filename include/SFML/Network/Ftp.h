@@ -224,7 +224,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirec
 /// \return Directory name
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API const wchar_t* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 
 ////////////////////////////////////////////////////////////

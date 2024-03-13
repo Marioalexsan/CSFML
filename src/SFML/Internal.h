@@ -29,6 +29,7 @@
 // Define macros to check the validity of CSFML objects in debug run
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Err.hpp>
+#include <ostream>
 
 #ifndef NDEBUG
 

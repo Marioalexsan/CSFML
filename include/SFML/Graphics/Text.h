@@ -247,7 +247,7 @@ CSFML_GRAPHICS_API void sfText_setString(sfText* text, const char* string);
 /// \param string New string
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const uint32_t* string);
+CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const char32_t* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the font of a text
@@ -397,7 +397,7 @@ CSFML_GRAPHICS_API const char* sfText_getString(const sfText* text);
 /// \return String as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const uint32_t* sfText_getUnicodeString(const sfText* text);
+CSFML_GRAPHICS_API const char32_t* sfText_getUnicodeString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font used by a text

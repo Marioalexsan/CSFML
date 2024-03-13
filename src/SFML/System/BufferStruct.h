@@ -37,7 +37,7 @@
 ////////////////////////////////////////////////////////////
 struct sfBuffer
 {
-    std::vector<sf::Uint8> buffer;
+    std::vector<uint8_t> buffer;
 };
 
 

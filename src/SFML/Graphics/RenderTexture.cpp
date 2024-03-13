@@ -41,19 +41,6 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, bool depthBuffer)
-{
-    sfRenderTexture* renderTexture = new sfRenderTexture;
-    renderTexture->This.create(width, height, depthBuffer);
-    renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
-    renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
-    renderTexture->CurrentView.This = renderTexture->This.getView();
-
-    return renderTexture;
-}
-
-
-////////////////////////////////////////////////////////////
 sfRenderTexture* sfRenderTexture_createWithSettings(unsigned int width, unsigned int height, const sfContextSettings* settings)
 {
     // Convert context settings
@@ -65,7 +52,13 @@ sfRenderTexture* sfRenderTexture_createWithSettings(unsigned int width, unsigned
 
     // Create the render texture
     sfRenderTexture* renderTexture = new sfRenderTexture;
-    renderTexture->This.create(width, height, params);
+
+    if (!renderTexture->This.create({ width, height }, params))
+    {
+        delete renderTexture;
+        return nullptr;
+    }
+
     renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
     renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
     renderTexture->CurrentView.This = renderTexture->This.getView();

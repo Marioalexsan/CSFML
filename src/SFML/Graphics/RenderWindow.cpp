@@ -45,10 +45,10 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, uint32_t state, const sfContextSettings* settings)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Convert context settings
     sf::ContextSettings params;
@@ -59,7 +59,7 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint3
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(videoMode, title, style, params);
+    renderWindow->This.create(videoMode, title, style, (sf::State)state, params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 
@@ -67,10 +67,10 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint3
 }
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const char32_t* title, uint32_t style, uint32_t state, const sfContextSettings* settings)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Convert context settings
     sf::ContextSettings params;
@@ -81,7 +81,7 @@ sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const uint32_t* t
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(videoMode, title, style, params);
+    renderWindow->This.create(videoMode, title, style, (sf::State)state, params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 
@@ -243,7 +243,7 @@ void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const uint32_t* title)
+void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const char32_t* title)
 {
     CSFML_CALL(renderWindow, setTitle(title));
 }
@@ -252,7 +252,7 @@ void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const uint32_t
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const uint8_t* pixels)
 {
-    CSFML_CALL(renderWindow, setIcon(width, height, pixels));
+    CSFML_CALL(renderWindow, setIcon({ width, height }, pixels));
 }
 
 
@@ -343,11 +343,11 @@ void sfRenderWindow_setJoystickThreshold(sfRenderWindow* renderWindow, float thr
 
 
 ////////////////////////////////////////////////////////////
-sfWindowHandle sfRenderWindow_getSystemHandle(const sfRenderWindow* renderWindow)
+sfWindowHandle sfRenderWindow_getNativeHandle(const sfRenderWindow* renderWindow)
 {
     CSFML_CHECK_RETURN(renderWindow, 0);
 
-    return static_cast<sfWindowHandle>(renderWindow->This.getSystemHandle());
+    return static_cast<sfWindowHandle>(renderWindow->This.getNativeHandle());
 }
 
 

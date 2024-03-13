@@ -52,11 +52,13 @@ typedef enum
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new text
+/// 
+/// \param font Font used to draw the string
 ///
 /// \return A new sfText object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfText* sfText_create(void);
+CSFML_GRAPHICS_API sfText* sfText_create(const sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing text

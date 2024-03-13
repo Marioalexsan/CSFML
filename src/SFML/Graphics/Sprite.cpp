@@ -34,12 +34,12 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSprite* sfSprite_create(void)
+sfSprite* sfSprite_create(const sfTexture* texture)
 {
-    sfSprite* sprite = new sfSprite;
-    sprite->Texture = nullptr;
+    CSFML_CHECK_RETURN(texture, nullptr);
+    CSFML_CHECK_RETURN(texture->This, nullptr);
 
-    return sprite;
+    return new sfSprite{ sf::Sprite{*texture->This}, texture };
 }
 
 

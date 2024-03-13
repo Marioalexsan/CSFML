@@ -34,12 +34,11 @@
 
 
 ////////////////////////////////////////////////////////////
-sfText* sfText_create(void)
+sfText* sfText_create(const sfFont* font)
 {
-    sfText* text = new sfText;
-    text->Font = nullptr;
+    CSFML_CHECK_RETURN(font, nullptr);
 
-    return text;
+    return new sfText{ sf::Text{font->This}, font };
 }
 
 

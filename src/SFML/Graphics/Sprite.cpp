@@ -39,7 +39,7 @@ sfSprite* sfSprite_create(const sfTexture* texture)
     CSFML_CHECK_RETURN(texture, nullptr);
     CSFML_CHECK_RETURN(texture->This, nullptr);
 
-    return new sfSprite{ sf::Sprite{*texture->This}, texture };
+    return new sfSprite{ sf::Sprite{*texture->This}, texture, {}, {} };
 }
 
 

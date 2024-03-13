@@ -38,7 +38,7 @@ sfText* sfText_create(const sfFont* font)
 {
     CSFML_CHECK_RETURN(font, nullptr);
 
-    return new sfText{ sf::Text{font->This}, font };
+    return new sfText{ sf::Text{font->This}, font, {}, {}, {} };
 }
 
 

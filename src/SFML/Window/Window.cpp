@@ -48,7 +48,7 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, u
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, title, style, (sf::State)state, params);
+    window->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
 
     return window;
 }
@@ -68,7 +68,7 @@ sfWindow* sfWindow_createUnicode(sfVideoMode mode, const char32_t* title, uint32
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, title, style, (sf::State)state, params);
+    window->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
 
     return window;
 }

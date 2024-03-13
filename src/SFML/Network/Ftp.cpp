@@ -28,7 +28,9 @@
 #include <SFML/Network/Ftp.h>
 #include <SFML/Network/FtpStruct.h>
 #include <SFML/Network/IpAddress.hpp>
+#include <SFML/System/String.hpp>
 #include <SFML/Internal.h>
+#include <string.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -114,11 +116,25 @@ const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpD
 
 
 ////////////////////////////////////////////////////////////
-const wchar_t* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse)
+const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse)
+{
+    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
+    return strdup(sf::String(ftpDirectoryResponse->This.getDirectory()).toAnsiString().c_str());
+}
+
+
+////////////////////////////////////////////////////////////
+const char32_t* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
 
-    return ftpDirectoryResponse->This.getDirectory().c_str();
+    std::u32string str = sf::String(ftpDirectoryResponse->This.getDirectory().c_str()).toUtf32();
+
+    std::size_t size = sizeof(char32_t) * str.length();
+    char32_t* ret = static_cast<char32_t*>(malloc(size));
+    memcpy(ret, str.c_str(), size);
+    
+    return ret;
 }
 
 

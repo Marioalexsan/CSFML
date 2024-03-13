@@ -159,11 +159,14 @@ void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, uint8_t alpha
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha)
+bool sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha)
 {
-    CSFML_CHECK(source);
+    CSFML_CHECK_RETURN(image, false);
+    CSFML_CHECK_RETURN(source, false);
+
     sf::IntRect sfmlRect({ sourceRect.left, sourceRect.top }, { sourceRect.width, sourceRect.height });
-    CSFML_CALL(image, copy(source->This, { destX, destY }, sfmlRect, applyAlpha));
+
+    return image->This.copy(source->This, { destX, destY }, sfmlRect, applyAlpha);
 }
 
 

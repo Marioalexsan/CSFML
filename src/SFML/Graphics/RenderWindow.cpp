@@ -59,7 +59,7 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint3
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(videoMode, title, style, (sf::State)state, params);
+    renderWindow->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 
@@ -81,7 +81,7 @@ sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const char32_t* t
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(videoMode, title, style, (sf::State)state, params);
+    renderWindow->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 

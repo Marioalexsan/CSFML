@@ -47,10 +47,20 @@ typedef enum
     sfTitlebar     = 1 << 0, ///< Title bar + fixed border
     sfResize       = 1 << 1, ///< Titlebar + resizable border + maximize button
     sfClose        = 1 << 2, ///< Titlebar + close button
-    sfFullscreen   = 1 << 3, ///< Fullscreen mode (this flag and all others are mutually exclusive)
+
     sfDefaultStyle = sfTitlebar | sfResize | sfClose ///< Default window style
 } sfWindowStyle;
 
+
+////////////////////////////////////////////////////////////
+/// \brief Enumeration of the window states
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfWindowed,  //!< Floating window
+    sfFullscreen //!< Fullscreen window
+} sfWindowState;
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new window

@@ -34,7 +34,6 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/Graphics/Transform.h>
 #include <SFML/System/Vector2.h>
-#include <SFML/Uchar.h>
 #include <stddef.h>
 
 

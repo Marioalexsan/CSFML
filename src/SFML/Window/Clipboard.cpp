@@ -29,6 +29,7 @@
 #include <SFML/Window/Clipboard.h>
 #include <SFML/Window/Clipboard.hpp>
 #include <SFML/Internal.h>
+#include <SFML/Char32.hpp>
 #include <string>
 
 
@@ -48,10 +49,9 @@ const char* sfClipboard_getString()
 
 
 ////////////////////////////////////////////////////////////
-const char32_t* sfClipboard_getUnicodeString()
+const sfChar32* sfClipboard_getUnicodeString()
 {
-    ClipboardString = sf::Clipboard::getString();
-    return ClipboardString.getData();
+    return copyToChar32(sf::Clipboard::getString());
 }
 
 
@@ -63,7 +63,7 @@ void sfClipboard_setString(const char* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfClipboard_setUnicodeString(const char32_t* text)
+void sfClipboard_setUnicodeString(const sfChar32* text)
 {
-    sf::Clipboard::setString(text);
+    sf::Clipboard::setString(copyFromChar32(text));
 }

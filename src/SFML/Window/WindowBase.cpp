@@ -31,6 +31,7 @@
 #include <SFML/Window/CursorStruct.h>
 #include <SFML/Window/VideoMode.hpp>
 #include <SFML/ConvertEvent.h>
+#include <SFML/Char32.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -48,14 +49,14 @@ sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t 
 
 
 ////////////////////////////////////////////////////////////
-sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const char32_t* title, uint32_t style)
+sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style)
 {
     // Convert video mode
     sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Create the window
     sfWindowBase* windowBase = new sfWindowBase;
-    windowBase->This.create(videoMode, title, style);
+    windowBase->This.create(videoMode, copyFromChar32(title), style);
 
     return windowBase;
 }
@@ -185,9 +186,9 @@ void sfWindowBase_setTitle(sfWindowBase* windowBase, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const char32_t* title)
+void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* title)
 {
-    CSFML_CALL(windowBase, setTitle(title));
+    CSFML_CALL(windowBase, setTitle(copyFromChar32(title)));
 }
 
 

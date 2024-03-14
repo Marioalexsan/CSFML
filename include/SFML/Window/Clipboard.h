@@ -30,7 +30,6 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Export.h>
 #include <SFML/Window/Types.h>
-#include <SFML/Uchar.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -52,6 +51,9 @@ CSFML_WINDOW_API const char* sfClipboard_getString(void);
 /// This function returns the content of the clipboard
 /// as a string. If the clipboard does not contain string
 /// it returns an empty string.
+/// 
+/// The returned const sfChar32* owns the string and must be freed to
+/// avoid memory leaks.
 ///
 /// \return Clipboard contents as UTF-32
 ///

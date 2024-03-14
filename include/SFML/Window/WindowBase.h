@@ -35,7 +35,6 @@
 #include <SFML/Window/Types.h>
 #include <SFML/Window/Vulkan.h>
 #include <SFML/System/Vector2.h>
-#include <SFML/Uchar.h>
 
 
 ////////////////////////////////////////////////////////////

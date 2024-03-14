@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
+#include <SFML/Char32.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -184,9 +185,9 @@ void sfText_setString(sfText* text, const char* string)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_setUnicodeString(sfText* text, const char32_t* string)
+void sfText_setUnicodeString(sfText* text, const sfChar32* string)
 {
-    sf::String UTF32Text = string;
+    sf::String UTF32Text = copyFromChar32(string);
     CSFML_CALL(text, setString(UTF32Text));
 }
 
@@ -269,11 +270,11 @@ const char* sfText_getString(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-const char32_t* sfText_getUnicodeString(const sfText* text)
+const sfChar32* sfText_getUnicodeString(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, nullptr);
 
-    return text->This.getString().getData();
+    return copyToChar32(text->This.getString().getData());
 }
 
 

@@ -124,14 +124,14 @@ const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ft
 
 
 ////////////////////////////////////////////////////////////
-const char32_t* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse)
+const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
 
     std::u32string str = sf::String(ftpDirectoryResponse->This.getDirectory().c_str()).toUtf32();
 
-    std::size_t size = sizeof(char32_t) * str.length();
-    char32_t* ret = static_cast<char32_t*>(malloc(size));
+    std::size_t size = sizeof(sfChar32) * str.length();
+    sfChar32* ret = static_cast<sfChar32*>(malloc(size));
     memcpy(ret, str.c_str(), size);
     
     return ret;

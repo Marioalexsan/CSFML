@@ -22,20 +22,49 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_UCHAR_H
-#define SFML_UCHAR_H
-
+#ifndef SFML_CHAR32_H
+#define SFML_CHAR32_H
 
 ////////////////////////////////////////////////////////////
-// Define a macro for char32_t for MacOS
+// Headers
 ////////////////////////////////////////////////////////////
+#include <SFML/System/String.hpp>
 #include <SFML/Config.h>
+#include <string.h>
 
-#ifndef CSFML_SYSTEM_MACOS
-    #include <uchar.h>
-    typedef char32_t sfChar32;
-#else
-    typedef __CHAR32_TYPE__ sfChar32;
-#endif
 
-#endif // SFML_UCHAR_H
+////////////////////////////////////////////////////////////
+// Define utils to copy from / to sfChar32 and sf::String
+////////////////////////////////////////////////////////////
+inline sfChar32* copyToChar32(const sf::String& str)
+{
+    std::size_t byteCount = sizeof(sfChar32) * str.getSize();
+
+    sfChar32* utf32 = static_cast<sfChar32*>(malloc(byteCount + sizeof(sfChar32)));
+
+    memcpy(utf32, str.getData(), byteCount);
+
+    utf32[str.getSize()] = 0;
+
+    return utf32;
+}
+
+inline sf::String copyFromChar32(const sfChar32* utf32)
+{
+    std::size_t length = 0;
+
+    while (utf32[length] != 0)
+    {
+        length++;
+    }
+
+    std::u32string str(length, ' ');
+
+    std::size_t byteCount = sizeof(sfChar32) * length;
+
+    memcpy(str.data(), utf32, byteCount);
+
+    return sf::String(str.data());
+}
+
+#endif // SFML_CHAR32_H

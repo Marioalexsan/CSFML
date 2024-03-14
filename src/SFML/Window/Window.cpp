@@ -31,6 +31,7 @@
 #include <SFML/Window/ContextSettingsInternal.h>
 #include <SFML/Window/CursorStruct.h>
 #include <SFML/ConvertEvent.h>
+#include <SFML/Char32.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -54,7 +55,7 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, u
 }
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_createUnicode(sfVideoMode mode, const char32_t* title, uint32_t style, uint32_t state, const sfContextSettings* settings)
+sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, uint32_t state, const sfContextSettings* settings)
 {
     // Convert video mode
     sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
@@ -68,7 +69,7 @@ sfWindow* sfWindow_createUnicode(sfVideoMode mode, const char32_t* title, uint32
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
+    window->This.create(videoMode, copyFromChar32(title), style, static_cast<sf::State>(state), params);
 
     return window;
 }
@@ -217,9 +218,9 @@ void sfWindow_setTitle(sfWindow* window, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setUnicodeTitle(sfWindow* window, const char32_t* title)
+void sfWindow_setUnicodeTitle(sfWindow* window, const sfChar32* title)
 {
-    CSFML_CALL(window, setTitle(title));
+    CSFML_CALL(window, setTitle(copyFromChar32(title)));
 }
 
 

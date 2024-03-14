@@ -40,7 +40,6 @@
 #include <SFML/Window/WindowHandle.h>
 #include <SFML/Window/Window.h>
 #include <SFML/System/Vector2.h>
-#include <SFML/Uchar.h>
 #include <stddef.h>
 
 

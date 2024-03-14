@@ -31,7 +31,6 @@
 #include <SFML/Network/Export.h>
 #include <SFML/Network/IpAddress.h>
 #include <SFML/Network/Types.h>
-#include <SFML/Uchar.h>
 #include <stddef.h>
 
 

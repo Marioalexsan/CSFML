@@ -31,6 +31,7 @@
 #include <SFML/Network/Export.h>
 #include <SFML/Network/IpAddress.h>
 #include <SFML/Network/Types.h>
+#include <SFML/Uchar.h>
 #include <stddef.h>
 
 
@@ -233,7 +234,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDir
 ////////////////////////////////////////////////////////////
 /// \brief Get the directory returned in a FTP directory response
 ///
-/// The returned const char32_t* owns the string and must be freed to
+/// The returned const sfChar32* owns the string and must be freed to
 /// avoid memory leaks.
 /// 
 /// \param ftpDirectoryResponse Ftp directory response
@@ -241,7 +242,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDir
 /// \return Directory name
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char32_t* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 
 ////////////////////////////////////////////////////////////

@@ -40,6 +40,7 @@
 #include <SFML/Window/WindowHandle.h>
 #include <SFML/Window/Window.h>
 #include <SFML/System/Vector2.h>
+#include <SFML/Uchar.h>
 #include <stddef.h>
 
 
@@ -63,7 +64,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const char32_t* title, uint32_t style, uint32_t state, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, uint32_t state, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a render window from an existing control
@@ -196,7 +197,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, co
 /// \param title        New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const char32_t* title);
+CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const sfChar32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a render window's icon

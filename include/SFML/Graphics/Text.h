@@ -34,6 +34,7 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/Graphics/Transform.h>
 #include <SFML/System/Vector2.h>
+#include <SFML/Uchar.h>
 #include <stddef.h>
 
 
@@ -249,7 +250,7 @@ CSFML_GRAPHICS_API void sfText_setString(sfText* text, const char* string);
 /// \param string New string
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const char32_t* string);
+CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const sfChar32* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the font of a text
@@ -399,7 +400,7 @@ CSFML_GRAPHICS_API const char* sfText_getString(const sfText* text);
 /// \return String as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const char32_t* sfText_getUnicodeString(const sfText* text);
+CSFML_GRAPHICS_API const sfChar32* sfText_getUnicodeString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font used by a text

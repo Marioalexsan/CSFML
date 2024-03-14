@@ -35,6 +35,7 @@
 #include <SFML/Window/WindowHandle.h>
 #include <SFML/Window/Types.h>
 #include <SFML/System/Vector2.h>
+#include <SFML/Uchar.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -111,7 +112,7 @@ CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, 
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const char32_t* title, uint32_t style, uint32_t state, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, uint32_t state, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
@@ -279,7 +280,7 @@ CSFML_WINDOW_API void sfWindow_setTitle(sfWindow* window, const char* title);
 /// \param title  New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const char32_t* title);
+CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const sfChar32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon
